@@ -1,9 +1,16 @@
 
 package br.com.sistema_estoque.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Fornecedor extends Pessoa{
@@ -12,7 +19,13 @@ public class Fornecedor extends Pessoa{
     @Column(nullable = false, length = 50, unique = true, updatable = false)
     private String cnpj;
     
-    private List<Produto> produtos;
+    @JsonBackReference
+    @OneToMany (mappedBy = "fornecedor")
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Produto> produtos = new ArrayList<>();
+    
+    @JsonManagedReference
+    @ManyToOne
     private Usuario usuario;
     
     public String getEmpresa() {
