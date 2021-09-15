@@ -2,10 +2,16 @@
 package br.com.sistema_estoque.model;
 
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
+@Entity
 public class Usuario extends Pessoa{
+    @Column(nullable = false, length = 50, unique = true)
     private String login;
+    @Column(nullable = false, length = 50, unique = true)
     private String senha;
+    @Column(nullable = false, length = 14, unique = true, updatable = false)
     private String cpf; 
     
     private List<Fornecedor> fornecedores;

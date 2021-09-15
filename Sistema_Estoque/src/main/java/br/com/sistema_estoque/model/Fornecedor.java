@@ -2,10 +2,14 @@
 package br.com.sistema_estoque.model;
 
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
-
+@Entity
 public class Fornecedor extends Pessoa{
+    @Column(nullable = false, length = 50)
     private String empresa;
+    @Column(nullable = false, length = 50, unique = true, updatable = false)
     private String cnpj;
     
     private List<Produto> produtos;

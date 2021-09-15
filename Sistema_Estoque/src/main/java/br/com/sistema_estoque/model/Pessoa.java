@@ -1,12 +1,22 @@
 package br.com.sistema_estoque.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public abstract class Pessoa implements Serializable{
     private static final long serialVersionUID = 1L;
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nome,email;
+    @Column(nullable = false, length = 100, unique = true)
+    private String nome;
+    @Column(nullable = false, length = 100, unique = true)
+    private String email;
 
     public int getId() {
         return id;
