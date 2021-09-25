@@ -29,11 +29,11 @@ public class Produto implements Serializable{
     @Column(nullable = false)
     private float valor_total;
     
-    @JsonManagedReference
+    
     @ManyToOne
     private Fornecedor fornecedor;
     
-    @JsonManagedReference
+    
     @ManyToOne
     private Usuario usuario;
     

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
+@Inheritance(strategy = InheritanceRype.JOINED)
 public class Fornecedor extends Pessoa{
     @Column(nullable = false, length = 50)
     private String empresa;
@@ -21,10 +22,9 @@ public class Fornecedor extends Pessoa{
     
     @JsonIgnore
     @OneToMany (mappedBy = "fornecedor")
-    @ElementCollection(fetch = FetchType.EAGER)
     private List<Produto> produtos = new ArrayList<>();
     
-    @JsonManagedReference
+    
     @ManyToOne
     private Usuario usuario;
     

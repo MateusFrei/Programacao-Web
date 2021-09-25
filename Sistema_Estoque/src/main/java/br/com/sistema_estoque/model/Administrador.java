@@ -15,12 +15,11 @@ public class Administrador extends Pessoa{
     @Column(nullable = false, length = 50, unique = true)
     private String login;
     
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = 50, unique = false)
     private String senha;
     
     @JsonIgnore
     @OneToMany(mappedBy = "administrador")
-    @ElementCollection(fetch = FetchType.EAGER)
     private List<Usuario> usuarios = new ArrayList<>();
     
     public String getLogin() {

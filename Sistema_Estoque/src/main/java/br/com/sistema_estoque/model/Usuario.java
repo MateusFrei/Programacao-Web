@@ -25,13 +25,12 @@ public class Usuario extends Pessoa{
     @OneToMany (mappedBy = "usuario")
     private List<Fornecedor> fornecedores = new ArrayList<>();
     
-    @JsonManagedReference
+    
     @ManyToOne
     private Administrador administrador;
     
     @JsonIgnore
     @OneToMany (mappedBy = "usuario")
-    @ElementCollection(fetch = FetchType.EAGER)
     private List<Produto> produtos = new ArrayList<>();
     
     public String getLogin() {

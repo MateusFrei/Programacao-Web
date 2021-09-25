@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Id;
 
 @Entity
-
 public abstract class Pessoa implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
