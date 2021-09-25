@@ -19,7 +19,7 @@ public class Fornecedor extends Pessoa{
     @Column(nullable = false, length = 50, unique = true, updatable = false)
     private String cnpj;
     
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany (mappedBy = "fornecedor")
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Produto> produtos = new ArrayList<>();

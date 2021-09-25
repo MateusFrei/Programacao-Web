@@ -18,7 +18,7 @@ public class Administrador extends Pessoa{
     @Column(nullable = false, length = 50, unique = true)
     private String senha;
     
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "administrador")
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Usuario> usuarios = new ArrayList<>();

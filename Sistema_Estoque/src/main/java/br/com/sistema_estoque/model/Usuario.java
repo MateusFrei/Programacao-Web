@@ -21,7 +21,7 @@ public class Usuario extends Pessoa{
     @Column(nullable = false, length = 14, unique = true, updatable = false)
     private String cpf; 
     
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany (mappedBy = "usuario")
     private List<Fornecedor> fornecedores = new ArrayList<>();
     
@@ -29,7 +29,7 @@ public class Usuario extends Pessoa{
     @ManyToOne
     private Administrador administrador;
     
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany (mappedBy = "usuario")
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Produto> produtos = new ArrayList<>();
