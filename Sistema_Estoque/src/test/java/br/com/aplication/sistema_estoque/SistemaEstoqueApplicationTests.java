@@ -1,4 +1,4 @@
-package we.aplication.sistema_estoque;
+package br.com.aplication.sistema_estoque;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
