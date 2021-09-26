@@ -1,17 +1,16 @@
 
 package br.com.sistema_estoque.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Administrador extends Pessoa{
+public class Administrador extends Pessoa implements Serializable{
     @Column(nullable = false, length = 50, unique = true)
     private String login;
     

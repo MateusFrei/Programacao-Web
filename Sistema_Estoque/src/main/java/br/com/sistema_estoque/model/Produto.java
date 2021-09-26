@@ -1,7 +1,6 @@
 
 package br.com.sistema_estoque.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
