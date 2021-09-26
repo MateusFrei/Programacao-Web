@@ -10,17 +10,28 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Fornecedor extends Pessoa{
     @Column(nullable = false, length = 50)
+    @NotBlank(message = "empresa deve ser preenchido.")
+    @Length(max = 50, message = "nome da epresa pode ter no máximo 50 caracteres.")
     private String empresa;
+    
     @Column(nullable = false, length = 50, unique = true, updatable = false)
+    @CNPJ(message = "CNPJ - invalido.")
     private String cnpj;
     
     @JsonIgnore
     @OneToMany (mappedBy = "fornecedor")
+    @Size(min = 1, message = "deve conter 1 produto.")
+    @Valid
     private List<Produto> produtos = new ArrayList<>();
     
     

@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public abstract class Pessoa implements Serializable{
@@ -13,9 +16,15 @@ public abstract class Pessoa implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     @Column(nullable = false, length = 100, unique = true)
+    @NotBlank(message = "nome deve ser preenchido.")
+    @Length(max = 100, message = "nome pode ter no máximo 100 caracteres.")
     private String nome;
+    
     @Column(nullable = false, length = 100, unique = true)
+    @NotBlank(message = "email deve ser preenchido.")
+    @Email
     private String email;
 
     public int getId() {
@@ -61,10 +70,7 @@ public abstract class Pessoa implements Serializable{
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return this.id == other.id;
     }
     
 }

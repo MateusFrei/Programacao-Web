@@ -8,17 +8,27 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Administrador extends Pessoa implements Serializable{
     @Column(nullable = false, length = 50, unique = true)
+    @NotBlank(message = "login deve ser preenchido.")
+    @Length(max = 50, message = "login pode ter no máximo 50 caracteres.")
     private String login;
     
     @Column(nullable = false, length = 50, unique = false)
+    @NotBlank(message = "senha deve ser preenchido.")
+    @Length(max = 50, message = "senha pode ter no máximo 50 caracteres.")
     private String senha;
     
     @JsonIgnore
     @OneToMany(mappedBy = "administrador")
+    @Size(min = 1, message = "deve conter 1 usuario.")
+    @Valid
     private List<Usuario> usuarios = new ArrayList<>();
     
     public String getLogin() {

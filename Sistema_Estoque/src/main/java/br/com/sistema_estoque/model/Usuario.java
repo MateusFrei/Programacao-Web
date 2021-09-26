@@ -8,18 +8,34 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class Usuario extends Pessoa{
     @Column(nullable = false, length = 50, unique = true)
+    @NotBlank(message = "login deve ser preenchido.")
+    @Length(max = 50, message = "login pode ter no máximo 50 caracteres.")
     private String login;
+    
     @Column(nullable = false, length = 50, unique = true)
+    @NotBlank(message = "senha deve ser preenchido.")
+    @Length(max = 50, message = "senha pode ter no máximo 50 caracteres.")
     private String senha;
+    
     @Column(nullable = false, length = 14, unique = true, updatable = false)
+    @CPF(message = "CPF - invalido.")
+    @NotBlank(message = "empresa deve ser preenchido.")
+    @Length(max = 15, message = "nome da epresa pode ter no máximo 15 caracteres.")
     private String cpf; 
     
     @JsonIgnore
     @OneToMany (mappedBy = "usuario")
+    @Size(min = 1, message = "deve conter 1 fornecedor.")
+    @Valid
     private List<Fornecedor> fornecedores = new ArrayList<>();
     
     
