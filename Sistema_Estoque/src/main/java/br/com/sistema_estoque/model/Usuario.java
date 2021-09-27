@@ -1,6 +1,7 @@
 
 package br.com.sistema_estoque.model;
 
+import br.com.sistema_estoque.annotation.LoginValidation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,8 @@ import org.hibernate.validator.constraints.br.CPF;
 @Entity
 public class Usuario extends Pessoa{
     @Column(nullable = false, length = 50, unique = true)
-    @NotBlank(message = "login deve ser preenchido.")
-    @Length(max = 50, message = "login pode ter no máximo 50 caracteres.")
+    @NotBlank
+    @LoginValidation(message = "Login invalido.")
     private String login;
     
     @Column(nullable = false, length = 50, unique = true)

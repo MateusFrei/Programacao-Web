@@ -1,12 +1,12 @@
 package br.com.sistema_estoque.model;
 
+import br.com.sistema_estoque.annotation.Emailvalidation;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
@@ -24,7 +24,7 @@ public abstract class Pessoa implements Serializable{
     
     @Column(nullable = false, length = 100, unique = true)
     @NotBlank(message = "email deve ser preenchido.")
-    @Email
+    @Emailvalidation
     private String email;
 
     public int getId() {
