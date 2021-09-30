@@ -8,11 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -23,23 +22,23 @@ public class Produto implements Serializable{
     private int id;
     
     @Column(nullable = false, length = 50, unique = true)
-    @NotBlank(message = "produto deve ser preenchido.")
+    @NotNull(message = "produto deve ser preenchido.")
     @Length(max = 50, message = "nome do produto pode ter no máximo 50 caracteres.")
     private String produto;
     
     @Column(nullable = false)
-    @NotBlank(message = "qtd_produto deve ser especificada.")
+    @NotNull(message = "qtd_produto deve ser especificada.")
     @Digits(integer = 2, fraction = 0, message = "Quantidade nao pode ser fracionada.")
     @Min(0) @Max(99)
     private int qtd_produto;
     
     @Column(nullable = false)
-    @NotBlank(message = "valor_produto deve ser preenchido.")
+    @NotNull(message = "valor_produto deve ser preenchido.")
     @Digits(integer = 0,fraction = 2, message = "valor do produto com duas casas decimais.")
     private float valor_produto;
     
     @Column(nullable = false)
-    @NotBlank(message = "valor_total deve ser preenchido.")
+    @NotNull(message = "valor_total deve ser preenchido.")
     private float valor_total;
     
     

@@ -21,14 +21,15 @@ public class Administrador extends Pessoa implements Serializable{
     @LoginValidation(message = "Login invalido.")
     private String login;
     
-    @Column(nullable = false, length = 50, unique = false)
+    @Column(nullable = false, length = 50)
     @NotBlank(message = "senha deve ser preenchido.")
     @Length(max = 50, message = "senha pode ter no máximo 50 caracteres.")
     private String senha;
     
-    @JsonIgnore
+    
     @OneToMany(mappedBy = "administrador")
     @Size(min = 1, message = "deve conter 1 usuario.")
+    @JsonIgnore
     @Valid
     private List<Usuario> usuarios = new ArrayList<>();
     

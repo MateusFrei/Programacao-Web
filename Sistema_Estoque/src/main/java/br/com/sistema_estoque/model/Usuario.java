@@ -22,7 +22,7 @@ public class Usuario extends Pessoa{
     @LoginValidation(message = "Login invalido.")
     private String login;
     
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = 50)
     @NotBlank(message = "senha deve ser preenchido.")
     @Length(max = 50, message = "senha pode ter no máximo 50 caracteres.")
     private String senha;
@@ -35,8 +35,6 @@ public class Usuario extends Pessoa{
     
     @JsonIgnore
     @OneToMany (mappedBy = "usuario")
-    @Size(min = 1, message = "deve conter 1 fornecedor.")
-    @Valid
     private List<Fornecedor> fornecedores = new ArrayList<>();
     
     
