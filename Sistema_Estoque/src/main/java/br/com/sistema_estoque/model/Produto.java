@@ -34,7 +34,7 @@ public class Produto implements Serializable{
     
     @Column(nullable = false)
     @NotNull(message = "valor_produto deve ser preenchido.")
-    @Digits(integer = 0,fraction = 2, message = "valor do produto com duas casas decimais.")
+    
     private float valor_produto;
     
     @Column(nullable = false)

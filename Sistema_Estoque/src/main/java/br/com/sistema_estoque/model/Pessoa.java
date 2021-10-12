@@ -18,7 +18,7 @@ public abstract class Pessoa implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
     
     @Column(nullable = false, length = 100, unique = true)
     @NotBlank(message = "nome deve ser preenchido.")
@@ -30,9 +30,32 @@ public abstract class Pessoa implements Serializable{
     @Emailvalidation
     private String email;
 
-    public int getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pessoa other = (Pessoa) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+
 
     public void setId(int id) {
         this.id = id;
@@ -54,26 +77,16 @@ public abstract class Pessoa implements Serializable{
         this.email = email;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + this.id;
-        return hash;
+    public long getId() {
+        return id;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Pessoa other = (Pessoa) obj;
-        return this.id == other.id;
+    public void setId(long id) {
+        this.id = id;
     }
+
+
+
+
     
 }

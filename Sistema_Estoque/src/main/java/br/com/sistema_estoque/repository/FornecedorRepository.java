@@ -10,9 +10,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FornecedorRepository extends JpaRepository<Fornecedor, Integer>{
+public interface FornecedorRepository extends JpaRepository<Fornecedor, Long>{
     
     @Query("SELECT p FROM Produto p WHERE p.id = :id")
-    public List<Produto> findByid(@Param("id") int id);
+    public List<Produto> findByid(@Param("id") Long id);
     
 }

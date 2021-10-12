@@ -30,7 +30,7 @@ public class Fornecedor extends Pessoa{
     
     @JsonIgnore
     @OneToMany (mappedBy = "fornecedor")
-    @Size(min = 1, message = "deve conter 1 produto.")
+    @Size(min = 0, message = "deve conter 1 produto.")
     @Valid
     private List<Produto> produtos = new ArrayList<>();
     
