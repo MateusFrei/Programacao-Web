@@ -33,18 +33,6 @@ public class ProdutoService {
     }
         
     
-    public Produto update(Produto p){
-        Produto obj = findById(p.getId());
-        String produtoAtual = obj.getProduto();
-        produtoAtual = p.getProduto();
-        
-        try {
-            p.setProduto(produtoAtual);
-            return repo.save(p);
-        } catch (Exception e) {
-            throw new RuntimeException("Falha na atualização");
-        }
-    }
     
     public List<Produto> findAll(int page, int size){
         Pageable p = PageRequest.of(page, size);

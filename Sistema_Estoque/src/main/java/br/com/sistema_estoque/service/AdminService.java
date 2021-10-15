@@ -29,12 +29,9 @@ public class AdminService {
     }
     
     private Administrador save(Administrador a){
-        
-        try {
-           return repo.save(a);
-        } catch (Exception e) {
-            throw new RuntimeException("erro ao salvar fonecedor ");
-        }
+
+        return repo.save(a);
+     
         
     }    
     
@@ -61,14 +58,12 @@ public class AdminService {
 
      public Administrador update(Administrador a, String senhaAtual, String novaSenha, String confirmaSenha){
         Administrador obj = findById(a.getId());
-         alterarSenha(a, senhaAtual, novaSenha, confirmaSenha);
-         try {
-             a.setEmail(obj.getEmail());
-             a.setNome(obj.getNome());
-             return repo.save(a);
-         } catch (Exception e) {
-             throw new RuntimeException("Falha na atualizaçao");
-         }
+        alterarSenha(a, senhaAtual, novaSenha, confirmaSenha);
+         
+        a.setEmail(obj.getEmail());
+        a.setNome(obj.getNome());
+        return repo.save(a);
+
     }
 
     private void alterarSenha(Administrador a, String senhaAtual, String novaSenha, String confirmaSenha){

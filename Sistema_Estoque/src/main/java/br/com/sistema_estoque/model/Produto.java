@@ -34,7 +34,7 @@ public class Produto implements Serializable{
     
     @Column(nullable = false)
     @NotNull(message = "valor_produto deve ser preenchido.")
-    
+    @Digits(integer = 2, fraction = 0, message = "Quantidade nao pode ser fracionada.")
     private float valor_produto;
     
     @Column(nullable = false)

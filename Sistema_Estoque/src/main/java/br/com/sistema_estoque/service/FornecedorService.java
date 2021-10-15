@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ForneceService {
+public class FornecedorService {
     @Autowired
     private FornecedorRepository repo;
     
@@ -50,24 +50,18 @@ public class ForneceService {
     
     private Fornecedor save(Fornecedor f){
         
-        try {
-           return repo.save(f);
-        } catch (Exception e) {
-            throw new RuntimeException("erro ao salvar fonecedor ");
-        }
-        
+        return repo.save(f);
+     
     }
     
      public Fornecedor update(Fornecedor f, String atualCnpj, String novoCnpj, String confirmaCnpj){
         Fornecedor obj = findById(f.getId());
-         alterarCnpj(f, atualCnpj,  novoCnpj, confirmaCnpj);
-         try {
-             f.setEmail(obj.getEmail());
-             f.setNome(obj.getNome());
-             return repo.save(f);
-         } catch (Exception e) {
-             throw new RuntimeException("Falha na atualizaçao");
-         }
+        alterarCnpj(f, atualCnpj,  novoCnpj, confirmaCnpj);
+         
+        f.setEmail(obj.getEmail());
+        f.setNome(obj.getNome());
+        return repo.save(f);
+
     }
     
     private void alterarCnpj(Fornecedor f, String atualCnpj, String novoCnpj, String confirmaCnpj){
