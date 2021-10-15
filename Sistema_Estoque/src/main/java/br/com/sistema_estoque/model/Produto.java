@@ -43,6 +43,7 @@ public class Produto implements Serializable{
     
     
     @ManyToOne
+    @NotNull
     private Fornecedor fornecedor;
     
     
