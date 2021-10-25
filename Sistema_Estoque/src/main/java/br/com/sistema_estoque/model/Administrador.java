@@ -3,6 +3,7 @@ package br.com.sistema_estoque.model;
 
 import br.com.sistema_estoque.annotation.LoginValidation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
+@JsonIgnoreProperties(value = "senha", allowGetters = false, allowSetters = true)
 public class Administrador extends Pessoa implements Serializable{
     @Column(nullable = false, length = 50, unique = true)
     @NotBlank

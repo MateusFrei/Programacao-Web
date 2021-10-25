@@ -70,6 +70,7 @@ public class UserService {
          try {
              u.setEmail(obj.getEmail());
              u.setNome(obj.getNome());
+             u.setSenha(novaSenha);
              return repo.save(u);
          } catch (Exception e) {
              throw new RuntimeException("Falha na atualizaçao");
@@ -89,4 +90,14 @@ public class UserService {
         
         u.setSenha(novaSenha);
     }   
+
+    public Usuario save(Usuario u, Object object) {
+                
+        try {
+           return repo.save(u);
+        } catch (Exception e) {
+            throw new RuntimeException("erro ao salvar fonecedor ");
+        }
+        
+    }
 }

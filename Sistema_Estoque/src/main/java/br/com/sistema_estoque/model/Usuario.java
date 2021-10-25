@@ -3,6 +3,7 @@ package br.com.sistema_estoque.model;
 
 import br.com.sistema_estoque.annotation.LoginValidation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
+@JsonIgnoreProperties(value = "senha", allowGetters = false, allowSetters = true)
 public class Usuario extends Pessoa{
     @Column(nullable = false, length = 50, unique = true)
     @NotBlank

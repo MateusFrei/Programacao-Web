@@ -28,7 +28,7 @@ public class AdminService {
         return result;
     }
     
-    private Administrador save(Administrador a){
+    public Administrador save(Administrador a){
 
         return repo.save(a);
      
@@ -62,6 +62,7 @@ public class AdminService {
          
         a.setEmail(obj.getEmail());
         a.setNome(obj.getNome());
+        a.setSenha(novaSenha);
         return repo.save(a);
 
     }
@@ -88,4 +89,6 @@ public class AdminService {
     public List<Administrador> findAl(){
         return repo.findAll();
     }
+
+ 
 }

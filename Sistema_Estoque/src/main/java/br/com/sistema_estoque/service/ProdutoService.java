@@ -42,5 +42,24 @@ public class ProdutoService {
     public List<Produto> findAl(){
         return repo.findAll();
     }    
+
+    public void update(Produto p) {
+        Produto obj = findById(p.getId());
+        String prodAtual = obj.getProduto();
+        if (!prodAtual.isBlank()) {
+            throw new RuntimeException("nao foi possivel.");
+        }
+        
+    }
+
+    public void delete(int id) {
+        Produto obj = findById(id);
+        String prodAtual = obj.getProduto();
+        try {
+            repo.delete(obj);
+        } catch (Exception e) {
+            throw new RuntimeException("Falha ao deletear");
+        }
+    } 
     
 }

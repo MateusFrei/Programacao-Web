@@ -60,6 +60,7 @@ public class FornecedorService {
          
         f.setEmail(obj.getEmail());
         f.setNome(obj.getNome());
+        f.setCnpj(novoCnpj);
         return repo.save(f);
 
     }
@@ -76,6 +77,10 @@ public class FornecedorService {
         }
         
         f.setCnpj(novoCnpj);
+    }
+
+    public void save(Fornecedor forne, Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
 }
