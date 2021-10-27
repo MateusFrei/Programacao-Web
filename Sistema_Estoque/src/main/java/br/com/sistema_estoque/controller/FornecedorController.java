@@ -31,7 +31,7 @@ public class FornecedorController {
         return ResponseEntity.ok(service.findAll(page, size));
     }
     
-    @RequestMapping(path = "/(id)")
+    @GetMapping(path = "/(id)")
     public ResponseEntity getOne(@PathVariable("id") Long id){
         return ResponseEntity.ok(service.findById(id));
     }

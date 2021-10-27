@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,6 +23,7 @@ public class UserController {
     @Autowired
     private UserService service;
     
+    @GetMapping
     public ResponseEntity getAll(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "10", required = false) int size){
@@ -29,7 +31,7 @@ public class UserController {
         return ResponseEntity.ok(service.findAll(page, size));
     }
     
-    @RequestMapping(path = "/(id)")
+    @GetMapping(path = "/(id)")
     public ResponseEntity getOne(@PathVariable("id") Long id){
         return ResponseEntity.ok(service.findByid(id));
     }
