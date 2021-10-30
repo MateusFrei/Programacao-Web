@@ -24,7 +24,7 @@ public class ProdutoService {
         }
     }
     
-    public Produto findById(int id){
+    public Produto findById(long id){
         Optional<Produto> result = repo.findById(id);
         if (result.isEmpty()) {
             throw new RuntimeException("Fornecedor não encontrado.");
@@ -43,9 +43,9 @@ public class ProdutoService {
         return repo.findAll();
     }    
 
-    public void update(Produto p) {
+    public void update(Produto p, String prodAtual) {
         Produto obj = findById(p.getId());
-        String prodAtual = obj.getProduto();
+        prodAtual = obj.getProduto();
         if (!prodAtual.isBlank()) {
             throw new RuntimeException("nao foi possivel.");
         }

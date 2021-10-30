@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @JsonIgnoreProperties(value = "senha", allowGetters = false, allowSetters = true)
 public class Usuario extends Pessoa{
     @Column(nullable = false, length = 50, unique = true)
-    @NotBlank
+    @NotBlank(message = "Login precisa ser preenchido.")
     @LoginValidation(message = "Login invalido.")
     private String login;
     
@@ -29,7 +29,7 @@ public class Usuario extends Pessoa{
     
     @Column(nullable = false, length = 14, unique = true, updatable = false)
     @CPF(message = "CPF - invalido.")
-    @NotBlank(message = "empresa deve ser preenchido.")
+    @NotBlank(message = "CPF- deve ser preenchido.")
     @Length(max = 15, message = "nome da epresa pode ter no máximo 15 caracteres.")
     private String cpf; 
     
@@ -91,6 +91,10 @@ public class Usuario extends Pessoa{
 
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
+    }
+
+    public void setId(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

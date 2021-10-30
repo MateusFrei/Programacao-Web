@@ -29,14 +29,17 @@ public class AdminService {
     }
     
     public Administrador save(Administrador a){
-
-        return repo.save(a);
+        try {
+            return repo.save(a);
+        } catch (Exception e) {
+            throw new RuntimeException("erro ao salvar");
+        }
      
         
     }    
     
-    public Administrador findById(Long id){
-        Optional<Administrador> result = repo.findById(id);
+    public Administrador findById(long id){
+        Optional<Administrador> result = repo.findByid(id);
         if (result.isEmpty()) {
             throw new RuntimeException("Fornecedor não encontrado.");
         }

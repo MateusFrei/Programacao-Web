@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.Length;
 @JsonIgnoreProperties(value = "senha", allowGetters = false, allowSetters = true)
 public class Administrador extends Pessoa implements Serializable{
     @Column(nullable = false, length = 50, unique = true)
-    @NotBlank
+    @NotBlank(message = "Login deve ser preenchido")
     @LoginValidation(message = "Login invalido.")
     private String login;
     
@@ -57,6 +57,10 @@ public class Administrador extends Pessoa implements Serializable{
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public void setId(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

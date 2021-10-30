@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/apirest/administrador")
+@RequestMapping(path = "/apirest/administradores")
 public class AdminController {
     @Autowired
     private AdminService service;
@@ -32,7 +32,7 @@ public class AdminController {
     }
     
     @GetMapping(path = "/(id)")
-    public ResponseEntity getOne(@PathVariable("id") Long id){
+    public ResponseEntity getOne(@PathVariable("id") long id){
         return ResponseEntity.ok(service.findById(id));
     }
     
@@ -51,7 +51,7 @@ public class AdminController {
     }
     
     @PutMapping(path = "/(id)/alterarsenha")
-    public ResponseEntity alterarSenha(@PathVariable("id") Long id,
+    public ResponseEntity alterarSenha(@PathVariable("id") long id,
             @RequestParam(name = "senhaAtual", defaultValue = "", required = true)String senhaAtual,
             @RequestParam(name = "novaSenha", defaultValue = "", required = true)String novaSenha,
             @RequestParam(name = "confirmaSenha", defaultValue = "", required = true)String confirmaSenha

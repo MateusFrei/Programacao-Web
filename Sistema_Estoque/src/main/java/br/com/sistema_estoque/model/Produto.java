@@ -19,7 +19,7 @@ public class Produto implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     
     @Column(nullable = false, length = 50, unique = true)
     @NotNull(message = "produto deve ser preenchido.")
@@ -43,21 +43,16 @@ public class Produto implements Serializable{
     
     
     @ManyToOne
-    @NotNull
+    @NotNull(message = "Campo de fornecedor precisa ser preenchido.")
     private Fornecedor fornecedor;
     
     
     @ManyToOne
     private Usuario usuario;
     
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
+ 
     public String getProduto() {
         return produto;
     }
@@ -90,11 +85,12 @@ public class Produto implements Serializable{
         this.valor_produto = valor_produto;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + this.id;
-        return hash;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
@@ -109,7 +105,17 @@ public class Produto implements Serializable{
             return false;
         }
         final Produto other = (Produto) obj;
-        return this.id == other.id;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
     }
 
     public Fornecedor getFornecedor() {

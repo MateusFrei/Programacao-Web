@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/apirest/user")
+@RequestMapping(path = "/apirest/usuarios")
 public class UserController {
     @Autowired
     private UserService service;
@@ -32,14 +32,14 @@ public class UserController {
     }
     
     @GetMapping(path = "/(id)")
-    public ResponseEntity getOne(@PathVariable("id") Long id){
+    public ResponseEntity getOne(@PathVariable("id") long id){
         return ResponseEntity.ok(service.findByid(id));
     }
     
     @PostMapping
     public ResponseEntity save(@Valid @RequestBody Usuario user){
-        user.setId(0);
-        service.save(user, null);
+        user.setId(null);
+        service.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
     
@@ -51,7 +51,7 @@ public class UserController {
     }
     
     @PutMapping(path = "/(id)/alterarsenha")
-    public ResponseEntity alterarSenha(@PathVariable("id") Long id,
+    public ResponseEntity alterarSenha(@PathVariable("id") long id,
             @RequestParam(name = "senhaAtual", defaultValue = "", required = true)String senhaAtual,
             @RequestParam(name = "novaSenha", defaultValue = "", required = true)String novaSenha,
             @RequestParam(name = "confirmaSenha", defaultValue = "", required = true)String confirmaSenha
@@ -63,7 +63,7 @@ public class UserController {
     
     
     @DeleteMapping(path = "/(id)")
-    public ResponseEntity delete(@PathVariable("id") Long id){
+    public ResponseEntity delete(@PathVariable("id") long id){
         service.delete(id);
         return ResponseEntity.ok().build();
     }

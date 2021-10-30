@@ -36,7 +36,11 @@ public class UserService {
         Usuario obj = (Usuario) findByid(id);
         
         verificaexlusao(obj);
-        repo.delete(obj);
+        try {
+            repo.delete(obj);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao deletar usuario.");
+        }
     }
     
     public void verificaexlusao(Usuario u){
@@ -45,15 +49,6 @@ public class UserService {
         }
     }
     
-    private Usuario save(Usuario u){
-        
-        try {
-           return repo.save(u);
-        } catch (Exception e) {
-            throw new RuntimeException("erro ao salvar fonecedor ");
-        }
-        
-    }
 
     public List<Usuario> findAll(int page, int size){
         Pageable p = PageRequest.of(page, size);
@@ -91,7 +86,7 @@ public class UserService {
         u.setSenha(novaSenha);
     }   
 
-    public Usuario save(Usuario u, Object object) {
+    public Usuario save(Usuario u) {
                 
         try {
            return repo.save(u);
@@ -100,4 +95,5 @@ public class UserService {
         }
         
     }
+
 }

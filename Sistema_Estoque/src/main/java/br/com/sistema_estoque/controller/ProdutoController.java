@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/apirest/produto")
+@RequestMapping(path = "/apirest/produtos")
 public class ProdutoController {
     @Autowired
     private ProdutoService service;
@@ -45,7 +45,7 @@ public class ProdutoController {
     @PutMapping("/(id)")
     public ResponseEntity update(@PathVariable("id") int id, @Valid @RequestBody Produto produto){
      produto.setId(id);
-     service.update(produto);
+     service.update(produto, "");
      return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     

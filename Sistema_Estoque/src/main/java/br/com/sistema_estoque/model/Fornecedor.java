@@ -72,5 +72,9 @@ public class Fornecedor extends Pessoa{
         this.usuario = usuario;
     }
 
+    public void setId(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
 

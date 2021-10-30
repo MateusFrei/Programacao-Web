@@ -18,6 +18,6 @@ public interface UserRepository extends JpaRepository<Usuario, Long>{
     public List<Fornecedor> findByCnpj(@Param("cnpj") String cnpj);
     
     @Query("SELECT p FROM Produto p WHERE p.id = :id")
-    public List<Produto> findByid(@Param("id") Long id);
+    public List<Produto> findByid(@Param("id") long id);
     
 }

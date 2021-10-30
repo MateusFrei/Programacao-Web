@@ -28,7 +28,11 @@ public class FornecedorService {
         Fornecedor obj = findById(id);
         
         verificaexlusao(obj);
-        repo.delete(obj);
+        try {
+            repo.delete(obj);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao deletar o fonrnecedor.");
+        }
         
     }
 
@@ -48,38 +52,14 @@ public class FornecedorService {
         }
     }
     
-    private Fornecedor save(Fornecedor f){
-        
-        return repo.save(f);
-     
-    }
     
-     public Fornecedor update(Fornecedor f, String atualCnpj, String novoCnpj, String confirmaCnpj){
-        Fornecedor obj = findById(f.getId());
-        alterarCnpj(f, atualCnpj,  novoCnpj, confirmaCnpj);
-         
-        f.setEmail(obj.getEmail());
-        f.setNome(obj.getNome());
-        f.setCnpj(novoCnpj);
-        return repo.save(f);
 
-    }
-    
-    private void alterarCnpj(Fornecedor f, String atualCnpj, String novoCnpj, String confirmaCnpj){
-        if (!atualCnpj.isBlank() && !novoCnpj.isBlank() && !confirmaCnpj.isBlank()) {
-            if (!atualCnpj.equals(f.getCnpj())){
-               throw new RuntimeException("SENHA ATUAL INCORRETA");
-            }
-            
-        }
-        if (!novoCnpj.equals(confirmaCnpj)) {
-            throw new RuntimeException("Nova sneha e confimação nao conferem");
-        }
-        
-        f.setCnpj(novoCnpj);
-    }
 
     public void save(Fornecedor forne, Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void save(Fornecedor forne) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
