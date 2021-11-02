@@ -1,10 +1,12 @@
 
 package br.com.sistema_estoque.service;
 
+import br.com.sistema_estoque.exception.NotFoundException;
 import br.com.sistema_estoque.model.Fornecedor;
 import br.com.sistema_estoque.repository.FornecedorRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +20,7 @@ public class FornecedorService {
     public Fornecedor findById(Long id){
         Optional<Fornecedor> result = repo.findById(id);
         if (result.isEmpty()) {
-            throw new RuntimeException("Fornecedor não encontrado.");
+            throw new NotFoundException("Fornecedor não encontrado.");
         }
         return result.get();
     }
@@ -31,8 +33,16 @@ public class FornecedorService {
         try {
             repo.delete(obj);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao deletar o fonrnecedor.");
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }            
+            throw new RuntimeException("erro ao salvar");
         }
+     
         
     }
 
@@ -55,13 +65,9 @@ public class FornecedorService {
     
 
 
-    public void save(Fornecedor forne, Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void save(Fornecedor forne) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-     
+
 }
 

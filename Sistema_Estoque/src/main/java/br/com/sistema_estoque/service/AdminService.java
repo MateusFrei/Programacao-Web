@@ -1,11 +1,13 @@
 
 package br.com.sistema_estoque.service;
 
+import br.com.sistema_estoque.exception.NotFoundException;
 import br.com.sistema_estoque.model.Administrador;
 import br.com.sistema_estoque.model.Usuario;
 import br.com.sistema_estoque.repository.AdministradorRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,16 +24,32 @@ public class AdminService {
     
     public List<Usuario> findByCpf(int cpf){
         List<Usuario> result = repo.findByCpf(cpf);
-        if (result.isEmpty()) {
-            throw new RuntimeException("Clinete não encontrado");
+        try {
+            return result;
+        } catch (Exception e) {
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }
+            throw new RuntimeException("falha ao buscar usuario pelo cpf.");
         }
-        return result;
+        
     }
     
     public Administrador save(Administrador a){
         try {
             return repo.save(a);
         } catch (Exception e) {
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }            
             throw new RuntimeException("erro ao salvar");
         }
      
@@ -41,7 +59,7 @@ public class AdminService {
     public Administrador findById(long id){
         Optional<Administrador> result = repo.findByid(id);
         if (result.isEmpty()) {
-            throw new RuntimeException("Fornecedor não encontrado.");
+            throw new NotFoundException("Fornecedor não encontrado.");
         }
         return result.get();
     }
@@ -55,6 +73,7 @@ public class AdminService {
     
     public void verificaexlusao(Administrador a){
         if (!a.getUsuarios().isEmpty()) {
+            
             throw new RuntimeException("Ainda possue usuarios cadastrados");
         }
     }
@@ -62,12 +81,22 @@ public class AdminService {
      public Administrador update(Administrador a, String senhaAtual, String novaSenha, String confirmaSenha){
         Administrador obj = findById(a.getId());
         alterarSenha(a, senhaAtual, novaSenha, confirmaSenha);
-         
-        a.setEmail(obj.getEmail());
-        a.setNome(obj.getNome());
-        a.setSenha(novaSenha);
-        return repo.save(a);
-
+        try {
+            a.setEmail(obj.getEmail());
+            a.setNome(obj.getNome());
+            a.setSenha(novaSenha);
+            return repo.save(a);             
+         } catch (Exception e) {
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }            
+            throw new RuntimeException("erro ao salvar");
+        }
+     
     }
 
     private void alterarSenha(Administrador a, String senhaAtual, String novaSenha, String confirmaSenha){

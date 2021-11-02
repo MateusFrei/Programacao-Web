@@ -1,10 +1,12 @@
 
 package br.com.sistema_estoque.service;
 
+import br.com.sistema_estoque.exception.NotFoundException;
 import br.com.sistema_estoque.model.Produto;
 import br.com.sistema_estoque.repository.ProdutoRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,15 +21,22 @@ public class ProdutoService {
         try {
             return repo.save(p);
         } catch (Exception e) {
-            throw new RuntimeException("Falha ao Salvar produtos.");
-            
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }            
+            throw new RuntimeException("erro ao salvar");
         }
+     
     }
     
     public Produto findById(long id){
         Optional<Produto> result = repo.findById(id);
         if (result.isEmpty()) {
-            throw new RuntimeException("Fornecedor não encontrado.");
+            throw new NotFoundException("Fornecedor não encontrado.");
         }
         return result.get();
     }

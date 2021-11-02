@@ -1,11 +1,13 @@
 
 package br.com.sistema_estoque.service;
 
+import br.com.sistema_estoque.exception.NotFoundException;
 import br.com.sistema_estoque.model.Fornecedor;
 import br.com.sistema_estoque.model.Produto;
 import br.com.sistema_estoque.model.Usuario;
 import br.com.sistema_estoque.repository.UserRepository;
 import java.util.List;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +21,7 @@ public class UserService {
     public List<Fornecedor> findByCnpj(String cnpj){
         List<Fornecedor> result = repo.findByCnpj(cnpj);
         if (result.isEmpty()) {
-            throw new RuntimeException("Fornecedor não encontrado");
+            throw new NotFoundException("Fornecedor não encontrado");
         }
         return result;
     }
@@ -27,7 +29,7 @@ public class UserService {
     public List<Produto> findByid(Long id){
         List<Produto> result = repo.findByid(id);
         if (result.isEmpty()) {
-            throw new RuntimeException("Produto não encontrado");
+            throw new NotFoundException("Produto não encontrado");
         }
         return result;        
     }
@@ -68,8 +70,15 @@ public class UserService {
              u.setSenha(novaSenha);
              return repo.save(u);
          } catch (Exception e) {
-             throw new RuntimeException("Falha na atualizaçao");
-         }
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }
+            throw new RuntimeException("falha ao atualizar o Ususario.");
+        }
     }
 
     private void alterarSenha(Usuario u, String senhaAtual, String novaSenha, String confirmaSenha){
@@ -91,8 +100,16 @@ public class UserService {
         try {
            return repo.save(u);
         } catch (Exception e) {
-            throw new RuntimeException("erro ao salvar fonecedor ");
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }            
+            throw new RuntimeException("erro ao salvar");
         }
+     
         
     }
 
