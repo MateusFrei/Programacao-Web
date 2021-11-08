@@ -14,5 +14,7 @@ public interface FornecedorRepository extends JpaRepository<Fornecedor, Long>{
     
     @Query("SELECT p FROM Produto p WHERE p.id = :id")
     public List<Produto> findByid(@Param("id") long id);
+
+    public void save(byte a);
     
 }
