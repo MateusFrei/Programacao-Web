@@ -52,15 +52,6 @@ public class ProdutoService {
         return repo.findAll();
     }    
 
-    public void update(Produto p, String prodAtual) {
-        Produto obj = findById(p.getId());
-        prodAtual = obj.getProduto();
-        if (!prodAtual.isBlank()) {
-            throw new RuntimeException("nao foi possivel.");
-        }
-        
-    }
-
     public void delete(int id) {
         Produto obj = findById(id);
         String prodAtual = obj.getProduto();

@@ -58,10 +58,5 @@ public class Administrador extends Pessoa implements Serializable{
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
-
-    public void setId(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+ 
 }

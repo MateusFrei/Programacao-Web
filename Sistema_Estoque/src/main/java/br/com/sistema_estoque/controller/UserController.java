@@ -31,7 +31,7 @@ public class UserController {
         return ResponseEntity.ok(service.findAll(page, size));
     }
     
-    @GetMapping(path = "/(id)")
+    @GetMapping(path = "/{id}")
     public ResponseEntity getOne(@PathVariable("id") long id){
         return ResponseEntity.ok(service.findByid(id));
     }
@@ -43,14 +43,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
     
-    @PutMapping(path = "/(id)")
+    @PutMapping(path = "/{id}")
     public ResponseEntity update(@PathVariable("id") Long id, @Valid @RequestBody Usuario user){
         user.setId(id);
         service.update(user, "", "", "");
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     
-    @PutMapping(path = "/(id)/alterarsenha")
+    @PutMapping(path = "//{id}/alterarsenha")
     public ResponseEntity alterarSenha(@PathVariable("id") long id,
             @RequestParam(name = "senhaAtual", defaultValue = "", required = true)String senhaAtual,
             @RequestParam(name = "novaSenha", defaultValue = "", required = true)String novaSenha,
@@ -62,7 +62,7 @@ public class UserController {
     }    
     
     
-    @DeleteMapping(path = "/(id)")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable("id") long id){
         service.delete(id);
         return ResponseEntity.ok().build();

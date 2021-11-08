@@ -52,8 +52,6 @@ public class AdminService {
             }            
             throw new RuntimeException("erro ao salvar");
         }
-     
-        
     }    
     
     public Administrador findById(long id){

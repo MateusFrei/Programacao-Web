@@ -30,7 +30,7 @@ public class ProdutoController {
             return ResponseEntity.status(HttpStatus.OK).body(service.findAll(page, size));
     }
     
-    @GetMapping(path = "/(id)")
+    @GetMapping(path = "/{id}")
     public ResponseEntity getOne(@PathVariable("id") int id){
         return ResponseEntity.ok(service.findById(id));
     }
@@ -42,14 +42,7 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(produto);
     }
     
-    @PutMapping("/(id)")
-    public ResponseEntity update(@PathVariable("id") int id, @Valid @RequestBody Produto produto){
-     produto.setId(id);
-     service.update(produto, "");
-     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-    
-    @DeleteMapping(path = "/(id)")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable("id") int id){
         service.delete(id);
         return ResponseEntity.ok().build();

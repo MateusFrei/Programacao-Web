@@ -18,7 +18,7 @@ public abstract class Pessoa implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     
     @Column(nullable = false, length = 100, unique = true)
     @NotBlank(message = "nome deve ser preenchido.")
@@ -55,9 +55,7 @@ public abstract class Pessoa implements Serializable{
         return true;
     }
 
-
-
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

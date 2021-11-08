@@ -30,7 +30,7 @@ public class FornecedorController {
         return ResponseEntity.ok(service.findAll(page, size));
     }
     
-    @GetMapping(path = "/(id)")
+    @GetMapping(path = "/{id}")
     public ResponseEntity getOne(@PathVariable("id") long id){
         return ResponseEntity.ok(service.findById(id));
     }
@@ -44,7 +44,7 @@ public class FornecedorController {
     
    
     
-    @DeleteMapping(path = "/(id)")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable("id") long id){
         service.delete(id);
         return ResponseEntity.ok().build();

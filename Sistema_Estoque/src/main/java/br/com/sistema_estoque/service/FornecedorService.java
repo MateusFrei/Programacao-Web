@@ -7,6 +7,7 @@ import br.com.sistema_estoque.repository.FornecedorRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.ConstraintViolationException;
+import static org.apache.coyote.http11.Constants.a;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -65,8 +66,19 @@ public class FornecedorService {
     
 
 
-    public void save(Fornecedor forne) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Fornecedor save(Fornecedor forne) {
+        try {
+            return repo.save(forne);
+        } catch (Exception e) {
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }            
+            throw new RuntimeException("erro ao salvar");
+        }        
     }
 
 }

@@ -16,7 +16,7 @@ public interface AdministradorRepository extends JpaRepository<Administrador, St
     public List<Usuario> findByCpf(@Param("cpf") int cpf);
     
     @Query("SELECT i FROM Administrador i WHERE i.id = :id")
-    public Optional<Administrador> findByid(@Param("id") long id);
+    public Optional<Administrador> findByid(@Param("id") Long id);
 
 
     

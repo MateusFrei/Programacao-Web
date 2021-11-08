@@ -31,7 +31,7 @@ public class AdminController {
         return ResponseEntity.ok(service.findAll(page, size));
     }
     
-    @GetMapping(path = "/(id)")
+    @GetMapping(path = "/{id}")
     public ResponseEntity getOne(@PathVariable("id") long id){
         return ResponseEntity.ok(service.findById(id));
     }
@@ -43,14 +43,14 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.CREATED).body(adm);
     }
     
-    @PutMapping(path = "/(id)")
+    @PutMapping(path = "/{id}")
     public ResponseEntity update(@PathVariable("id") Long id, @Valid @RequestBody Administrador adm){
         adm.setId(id);
         service.update(adm, "", "", "");
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     
-    @PutMapping(path = "/(id)/alterarsenha")
+    @PutMapping(path = "/{id}/alterarsenha")
     public ResponseEntity alterarSenha(@PathVariable("id") long id,
             @RequestParam(name = "senhaAtual", defaultValue = "", required = true)String senhaAtual,
             @RequestParam(name = "novaSenha", defaultValue = "", required = true)String novaSenha,
@@ -62,7 +62,7 @@ public class AdminController {
     }    
     
     
-    @DeleteMapping(path = "/(id)")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable("cpf") int cpf){
         service.delete(cpf);
         return ResponseEntity.ok().build();
