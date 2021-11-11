@@ -54,7 +54,7 @@ public class ProdutoService {
 
     public void delete(int id) {
         Produto obj = findById(id);
-        String prodAtual = obj.getProduto();
+        String prodAtual = obj.getNomeProduto();
         try {
             repo.delete(obj);
         } catch (Exception e) {

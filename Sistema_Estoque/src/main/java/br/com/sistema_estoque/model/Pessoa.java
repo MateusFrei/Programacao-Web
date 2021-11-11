@@ -75,16 +75,7 @@ public abstract class Pessoa implements Serializable{
         this.email = email;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-
-
-
-    
+    }  
 }

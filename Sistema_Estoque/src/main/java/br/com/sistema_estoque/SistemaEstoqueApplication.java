@@ -44,7 +44,7 @@ public class SistemaEstoqueApplication implements CommandLineRunner{
          
         //produtos
         Produto prod = new Produto();
-        prod.setProduto("Maizena");
+        prod.setNomeProduto("Maizena");
         prod.setQtd_produto(5);
         prod.setValor_produto(25);
         prod.setValor_total(125);
@@ -53,7 +53,7 @@ public class SistemaEstoqueApplication implements CommandLineRunner{
                
         Produto prod2 = new Produto();
 
-        prod2.setProduto("guaravita");
+        prod2.setNomeProduto("guaravita");
         prod2.setQtd_produto(5);
         prod2.setValor_produto(25);
         prod2.setValor_total(125);
@@ -62,7 +62,7 @@ public class SistemaEstoqueApplication implements CommandLineRunner{
         
         Produto prod3 = new Produto();
 
-        prod3.setProduto("guaraviton");
+        prod3.setNomeProduto("guaraviton");
         prod3.setQtd_produto(5);
         prod3.setUsuario(u2);
         prod3.setValor_produto(25);

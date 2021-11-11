@@ -24,7 +24,7 @@ public class Produto implements Serializable{
     @Column(nullable = false, length = 50, unique = true)
     @NotNull(message = "produto deve ser preenchido.")
     @Length(max = 50, message = "nome do produto pode ter no máximo 50 caracteres.")
-    private String produto;
+    private String nomeProduto;
     
     @Column(nullable = false)
     @NotNull(message = "qtd_produto deve ser especificada.")
@@ -53,12 +53,12 @@ public class Produto implements Serializable{
 
 
  
-    public String getProduto() {
-        return produto;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setProduto(String produto) {
-        this.produto = produto;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
     public int getQtd_produto() {

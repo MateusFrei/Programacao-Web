@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="~{fragmentos :: imports-css(title='Sistema de Estoque')}">
+        <title>...</title>
+    </head>
+    <body>
+        <div th:replace="~{fragmentos :: barramenu(pagina='')}"/>
+        
+        <div class="container" align="center">
+            <img th:src="@{~/imagens/estoque.jpg}" style="opacity: 20%"/>
+        </div>
+        
+        <div th:replace="~{fragmentos :: import-js}"/>
+    </body>
+</html>
