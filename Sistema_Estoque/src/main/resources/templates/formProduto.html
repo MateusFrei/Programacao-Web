@@ -4,7 +4,7 @@
         <title>title</title>
     </head>
     <body>
-        <div th:replace="~{fragmentos :: barramenu(pagina='hoteis')}"/>
+        <div th:replace="~{fragmentos :: barramenu(pagina='produtos')}"/>
         <div class="container" style="width: 60%; margin-top: 20px">
             <div class="card-header">
                 <h4>Cadastro de Produtos
@@ -32,7 +32,12 @@
                         <label for="valorproduto">Valor do Produto  </label>
                         <input th:field="*{valor_produto}" type="text" class="form-control" placeholder="valorproduto" required="required" maxlength="100"/>                        
                     </div>
-                </div>         
+                </div>
+  
+                <div class="card-footer">
+                    <input type="submit" class="btn btn-success" value="salvar"/>
+                </div>
+                
             </form>   
         </div>       
         <div th:required="~{fragmentos :: imports-js}"></div>
