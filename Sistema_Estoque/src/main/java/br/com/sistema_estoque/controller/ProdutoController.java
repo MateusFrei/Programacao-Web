@@ -37,13 +37,13 @@ public class ProdutoController {
     
     @PostMapping
     public ResponseEntity save(@Valid @RequestBody Produto produto){
-        produto.setId(0);
+        produto.setId(null);
         service.save(produto);
         return ResponseEntity.status(HttpStatus.CREATED).body(produto);
     }
     
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity delete(@PathVariable("id") int id){
+    public ResponseEntity delete(@PathVariable("id") Long id){
         service.delete(id);
         return ResponseEntity.ok().build();
     }

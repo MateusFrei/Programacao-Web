@@ -30,7 +30,6 @@ public class ProdutoService {
             }            
             throw new RuntimeException("erro ao salvar");
         }
-     
     }
     
     public Produto findById(long id){
@@ -52,7 +51,7 @@ public class ProdutoService {
         return repo.findAll();
     }    
 
-    public void delete(int id) {
+    public void delete(Long id) {
         Produto obj = findById(id);
         String prodAtual = obj.getNomeProduto();
         try {
