@@ -53,28 +53,28 @@ public class SistemaEstoqueApplication implements CommandLineRunner{
                
         Produto prod2 = new Produto();
 
-        prod2.setNomeProduto("guaravita");
+        prod2.setNomeProduto("Guaravita");
         prod2.setQtd_produto(5);
-        prod2.setValor_produto(25);
+        prod2.setValor_produto(2);
         prod2.setValor_total(125);
         prod2.setUsuario(u2);
 
         
         Produto prod3 = new Produto();
 
-        prod3.setNomeProduto("guaraviton");
+        prod3.setNomeProduto("Guaraviton");
         prod3.setQtd_produto(5);
         prod3.setUsuario(u2);
-        prod3.setValor_produto(25);
+        prod3.setValor_produto(5);
         prod3.setValor_total(125);
 
     
 
         //administradores
-        adm.setLogin("nathan");
-        adm.setSenha("nat123");
-        adm.setNome("nathan feiotosa");
-        adm.setEmail("nathan@gmail.com");        
+        adm.setLogin("Amabit");
+        adm.setSenha("bit123");
+        adm.setNome("amarildo bit");
+        adm.setEmail("amabit@gmail.com");        
         adm.setUsuarios(List.of(u1,u2));
         admrep.save(adm);               
         
@@ -83,8 +83,8 @@ public class SistemaEstoqueApplication implements CommandLineRunner{
         u1.setCpf("765.620.220-02");
         u1.setNome("Lucas");
         u1.setEmail("lucas@gmail.com");
-        u1.setLogin("lolcu");
-        u1.setSenha("paulosshsh");
+        u1.setLogin("sendrak");
+        u1.setSenha("luca123");
         u1.setFornecedores(List.of(f1,f2));
         u1.setProdutos(List.of(prod,prod2));
         usuariorep.save(u1);
@@ -94,7 +94,7 @@ public class SistemaEstoqueApplication implements CommandLineRunner{
         u2.setNome("lilito barros");
         u2.setEmail("pirulitos@gmail.com");
         u2.setLogin("lola");
-        u2.setSenha("kkkkeaemen");
+        u2.setSenha("kkeaemen");
         u2.setFornecedores(List.of(f1,f2));
         u2.setProdutos(List.of(prod3));
         usuariorep.save(u2);

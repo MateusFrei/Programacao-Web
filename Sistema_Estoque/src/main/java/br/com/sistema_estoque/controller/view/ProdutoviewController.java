@@ -1,5 +1,6 @@
 package br.com.sistema_estoque.controller.view;
 
+import br.com.sistema_estoque.model.Produto;
 import br.com.sistema_estoque.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,4 +19,10 @@ public class ProdutoviewController {
         model.addAttribute("produtos",service.findAl());
         return "produtos";
     }
+    @GetMapping(path = "/produto")
+    public String cadastro(Model model){
+        model.addAttribute("produto", new Produto());
+        
+        return "formProduto";
+    }    
 }

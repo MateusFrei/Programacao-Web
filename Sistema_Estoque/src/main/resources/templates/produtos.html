@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragmentos :: import-css(tittle='produtos')}">
+    <head th:replace="~{fragmentos :: imports-css(title='produtos')}">
         <title>title</title>
     </head>
     
@@ -23,15 +23,22 @@
                 
                 <div class="card-body">
                     <div class="card-text">
-                        <span>Quantidade</span>
+                        <span>Valor do Produto </span>
+                        <span class="card-title" th:text="${produto.valor_produto}"/>
+                        <br/>
+                        <span>Quantidade do Produto </span>
+                        <span class="card-title" th:text="${produto.qtd_produto}"/>                       
                         
                     </div>
                 </div>
-                
+                <div class="card-body">
+                    <a th:href="@{'~/produtos/produto/'+${produto.id}}" class="btn btn-warning">Editar</a>
+                    <a th:href="@{'~/produtos/'+${produto.id}+'/deletar'}" class="btn btn-danger" onclick="return confirm('Deseja relamente excluir?')">Excluir</a>                   
+                </div>
             </div>       
         </div>
         
-        <div th:replace="~{fragmentos :: import-js}"/>
+        <div th:replace="~{fragmentos :: imports-js}"/>
     </body>
     
 </html>
