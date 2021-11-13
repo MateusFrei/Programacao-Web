@@ -46,7 +46,7 @@ public class ProdutoviewController {
             model.addAttribute("produto", new Produto());
             return "formProduto";
         } catch (Exception e) {
-            model.addAttribute("msgErros", new ObjectError("produto", e.getMessage()));
+            model.addAttribute("msgErros", new ObjectError("Produto", e.getMessage()));
             return "formProduto";
         }
     }

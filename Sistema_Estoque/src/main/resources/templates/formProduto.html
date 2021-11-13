@@ -11,6 +11,9 @@
                     <a class="btn btn-primary float-right" th:href="@{~/produtos}" role="button">Voltar</a>
                 </h4>
             </div>
+            
+            <div th:replace="~{fragmentos :: mensagens}"></div>
+            
             <form th:object="${produto}" th:action="@{~/produtos/produto/{id} (id=${produto.id})}" method="post" class="card-body">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="from-row">
