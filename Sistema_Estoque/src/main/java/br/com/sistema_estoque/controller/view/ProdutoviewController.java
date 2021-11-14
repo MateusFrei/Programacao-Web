@@ -55,6 +55,5 @@ public class ProdutoviewController {
     public String deletar(@PathVariable("id") Long id) {
         service.delete(id);
         return "redirect:/produtos";
-    }    
-    
+    }           
 }

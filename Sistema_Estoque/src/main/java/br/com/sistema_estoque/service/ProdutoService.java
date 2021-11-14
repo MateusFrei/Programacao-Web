@@ -51,7 +51,7 @@ public class ProdutoService {
         return repo.findAll();
     }    
 
-    public void delete(Long id) {
+    public void delete(long id) {
         Produto obj = findById(id);
         String prodAtual = obj.getNomeProduto();
         try {

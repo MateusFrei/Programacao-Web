@@ -32,7 +32,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a th:href="@{'~/produtos/produto/'+${produto.id}}" class="btn btn-warning">Editar</a>
                     <a th:href="@{'~/produtos/'+${produto.id}+'/deletar'}" class="btn btn-danger" onclick="return confirm('Deseja relamente excluir?')">Excluir</a>                   
                 </div>
             </div>       
