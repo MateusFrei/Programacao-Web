@@ -22,16 +22,25 @@
 
                     <div class="card-text" th:text="'Email: '+${usuario.email}"></div>
                     <div class="card-text" th:text="'CPF: '+${usuario.cpf}"></div>      
+                    <!--
                     <div class="card-text">
+                         Não consigo listar os produtos que meu cliente possue  
                         <span>Produtos:</span>
                         <span th:each="prod, i : ${usuario.Produto}" th:text="${i.last} ? ${prod.nomeProduto} : ${prod.nomeProduto+' - '}"></span>
                     </div>
+                                        
                     <div class="card-text">
+                         Não consigo listar os fornecedores que meu cliente possue  
                         <span>Fornecedores:</span>
                         <span th:each="forne, i : ${usuario.Fornecedor}" th:text="${i.last} ? ${forne.nome} : ${forne.nome+' - '}"></span>
-                    </div>                      
+                    </div>         
+                    -->
                 </div>
             </div>
+            
+        <a th:href="@{'~/clientes/cliente/'+${cliente.id}}" class="btn btn-warning">Editar</a>
+        <a th:href="@{'~/clientes/'+${cliente.id}+'/deletar'}" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir esse cliente?')">Excluir</a>            
+            
         </div>  
         <div th:replace="~{fragmentos :: imports-js}"></div>        
     </body>
