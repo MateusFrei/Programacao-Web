@@ -3,7 +3,6 @@ package br.com.sistema_estoque.service;
 
 import br.com.sistema_estoque.exception.NotFoundException;
 import br.com.sistema_estoque.model.Fornecedor;
-import br.com.sistema_estoque.model.Produto;
 import br.com.sistema_estoque.model.Usuario;
 import br.com.sistema_estoque.repository.UserRepository;
 import java.util.List;
@@ -40,7 +39,7 @@ public class UserService {
         
         verificaexlusao(obj);
         try {
-           repo.delete(obj);
+          repo.delete(obj);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao deletar usuario.");
         }
