@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{fragmentos :: imports-css(title='produtos')}">
         <title>title</title>
-    </head>
-    
+    </head>   
     <body>
         <div th:replace="~{fragmentos :: barramenu(pagina='produtos')}"></div>
         
@@ -23,18 +22,28 @@
                 
                 <div class="card-body">
                     <div class="card-text">
-                        <span>Valor do Produto </span>
+                        <span>Valor do Produto: </span>
                         <span class="card-title" th:text="${produto.valor_produto}"/>
                         <br/>
-                        <span>Quantidade do Produto </span>
-                        <span class="card-title" th:text="${produto.qtd_produto}"/>                       
-                        
+                        <span>Quantidade do Produto: </span>
+                        <span class="card-title" th:text="${produto.qtd_produto}"/> 
+                        <br/>
+                        <span>Valor total do Produto: </span>
+                        <span class="card-title" th:text="${produto.valor_total}"/> 
+                        <br/>
+                        <span>Fornecedor do Produto: </span>
+                        <span class="card-title" th:text="${produto.fornecedor.nome}"/>   
+                        <br/>
+                        <span>Cliente cadastrante do Produto: </span>
+                        <span class="card-title" th:text="${produto.usuario.nome}"/>                         
                     </div>
                 </div>
+                
                 <div class="card-body">
                     <a th:href="@{'~/produtos/'+${produto.id}+'/deletar'}" class="btn btn-danger" onclick="return confirm('Deseja relamente excluir?')">Excluir</a>                   
                 </div>
-            </div>       
+            </div>     
+            
         </div>
         
         <div th:replace="~{fragmentos :: imports-js}"></div>

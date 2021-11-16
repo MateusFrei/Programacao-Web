@@ -7,7 +7,6 @@ import br.com.sistema_estoque.repository.FornecedorRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.ConstraintViolationException;
-import static org.apache.coyote.http11.Constants.a;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -42,9 +41,7 @@ public class FornecedorService {
                 }
             }            
             throw new RuntimeException("erro ao salvar");
-        }
-     
-        
+        }       
     }
 
     public List<Fornecedor> findAll(int page, int size){

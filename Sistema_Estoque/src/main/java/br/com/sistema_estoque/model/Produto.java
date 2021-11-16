@@ -16,10 +16,10 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Produto implements Serializable{
-    private static final long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     
     @Column(nullable = false, length = 50, unique = true)
     @NotNull(message = "produto deve ser preenchido.")
@@ -85,7 +85,7 @@ public class Produto implements Serializable{
         this.valor_produto = valor_produto;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

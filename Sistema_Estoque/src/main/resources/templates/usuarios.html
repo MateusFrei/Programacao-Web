@@ -1,47 +1,42 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{fragmentos :: imports-css(title='Usuarios')}">
         <title>title</title>
     </head>
-    
-    <body>        
-        <div th:replace="~{fragmentos :: barramenu(pagina='usuarios')}"></div>
-        
+    <body>
+        <div th:replace="~{fragmentos :: barramenu(pagina='usuarios')}"/>
+
         <div class="container" style="margin-top: 20px">
             <div class="card-header">
-                <h4>Clientes cadastrados
+                <h4>Cliente cadastrados
                     <a class="btn btn-primary float-right" th:href="@{~/usuarios/usuario}" role="button">Novo Cliente</a>
                 </h4>
             </div>
-            
             <div class="card" th:each="usuario : ${usuarios}">
                 <div class="card-body">
                     <h5 class="card-title" th:text="'Nome: '+${usuario.nome}"></h5>
-
-
                     <div class="card-text" th:text="'Email: '+${usuario.email}"></div>
-                    <div class="card-text" th:text="'CPF: '+${usuario.cpf}"></div>      
-                    <!--
-                    <div class="card-text">
-                         Não consigo listar os produtos que meu cliente possue  
-                        <span>Produtos:</span>
-                        <span th:each="prod, i : ${usuario.Produto}" th:text="${i.last} ? ${prod.nomeProduto} : ${prod.nomeProduto+' - '}"></span>
-                    </div>
+                    <div class="card-text" th:text="'CPF: '+${usuario.cpf}"></div>
+                    <div class="card-text" th:text="'Login: '+${usuario.login}"></div>
+                    <div class="card-text" th:text="'Administrador: '+${usuario.administrador.nome}"></div>
+                    
+                    <div class="card-text" th:text="'Produtos Cadastrados: '"></div>                  
+                    <span th:each="prod, i : ${usuario.produtos}" th:text="${i.last} ? ${prod.nomeProduto} : ${prod.nomeProduto+' | '}" ></span>                      
+
+                    <div class="card-text" th:text="'Fornecedores Cadastrados: '"></div>                  
+                    <span th:each="forne, i : ${usuario.fornecedores}" th:text="${i.last} ? ${forne.nome} : ${forne.nome+' | '}" ></span>                      
                                         
                     <div class="card-text">
-                         Não consigo listar os fornecedores que meu cliente possue  
-                        <span>Fornecedores:</span>
-                        <span th:each="forne, i : ${usuario.Fornecedor}" th:text="${i.last} ? ${forne.nome} : ${forne.nome+' - '}"></span>
-                    </div>         
-                    -->
+                        <a th:href="@{'~/usuarios/usuario/'+${usuario.id}}" class="btn btn-warning">Editar</a>
+                        <a th:href="@{'~/usuarios/'+${usuario.id}+'/deletar'}" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir esse Cliente?')">Excluir</a>
+                    </div>
                 </div>
             </div>
-            
-        <a th:href="@{'~/usuarios/usuario/'+${usuario.id}}" class="btn btn-warning">Editar</a>
-        <a th:href="@{'~/usuarios/'+${usuario.id}+'/deletar'}" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir esse cliente?')">Excluir</a>            
-            
-        </div>  
-        <div th:replace="~{fragmentos :: imports-js}"></div>        
+
+
+        </div>
+
+        <div th:replace="~{fragmentos :: imports-js}"/>
     </body>
+    
 </html>

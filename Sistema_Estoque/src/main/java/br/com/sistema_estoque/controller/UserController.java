@@ -32,8 +32,8 @@ public class UserController {
     }
     
     @GetMapping(path = "/{id}")
-    public ResponseEntity getOne(@PathVariable("id") long id){
-        return ResponseEntity.ok(service.findByid(id));
+    public ResponseEntity getOne(@PathVariable("id") Long id){
+        return ResponseEntity.ok(service.findById(id));
     }
     
     @PostMapping
@@ -51,19 +51,19 @@ public class UserController {
     }
     
     @PutMapping(path = "//{id}/alterarsenha")
-    public ResponseEntity alterarSenha(@PathVariable("id") long id,
+    public ResponseEntity alterarSenha(@PathVariable("id") Long id,
             @RequestParam(name = "senhaAtual", defaultValue = "", required = true)String senhaAtual,
             @RequestParam(name = "novaSenha", defaultValue = "", required = true)String novaSenha,
             @RequestParam(name = "confirmaSenha", defaultValue = "", required = true)String confirmaSenha
             ){
-        Usuario u = (Usuario) service.findByid(id);
+        Usuario u = (Usuario) service.findById(id);
         service.update(u, senhaAtual, novaSenha, confirmaSenha);
         return ResponseEntity.ok().build();
     }    
     
     
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity delete(@PathVariable("id") long id){
+    public ResponseEntity delete(@PathVariable("id") Long id){
         service.delete(id);
         return ResponseEntity.ok().build();
     }

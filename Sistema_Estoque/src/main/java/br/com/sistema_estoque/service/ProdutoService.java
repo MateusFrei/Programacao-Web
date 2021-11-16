@@ -32,7 +32,7 @@ public class ProdutoService {
         }
     }
     
-    public Produto findById(long id){
+    public Produto findById(Long id){
         Optional<Produto> result = repo.findById(id);
         if (result.isEmpty()) {
             throw new NotFoundException("Fornecedor não encontrado.");
@@ -51,7 +51,7 @@ public class ProdutoService {
         return repo.findAll();
     }    
 
-    public void delete(long id) {
+    public void delete(Long id) {
         Produto obj = findById(id);
         String prodAtual = obj.getNomeProduto();
         try {

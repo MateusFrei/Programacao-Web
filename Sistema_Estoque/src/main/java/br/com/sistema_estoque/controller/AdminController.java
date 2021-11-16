@@ -32,7 +32,7 @@ public class AdminController {
     }
     
     @GetMapping(path = "/{id}")
-    public ResponseEntity getOne(@PathVariable("id") long id){
+    public ResponseEntity getOne(@PathVariable("id") Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     
@@ -51,7 +51,7 @@ public class AdminController {
     }
     
     @PutMapping(path = "/{id}/alterarsenha")
-    public ResponseEntity alterarSenha(@PathVariable("id") long id,
+    public ResponseEntity alterarSenha(@PathVariable("id") Long id,
             @RequestParam(name = "senhaAtual", defaultValue = "", required = true)String senhaAtual,
             @RequestParam(name = "novaSenha", defaultValue = "", required = true)String novaSenha,
             @RequestParam(name = "confirmaSenha", defaultValue = "", required = true)String confirmaSenha
@@ -63,8 +63,8 @@ public class AdminController {
     
     
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity delete(@PathVariable("cpf") int cpf){
-        service.delete(cpf);
+    public ResponseEntity delete(@PathVariable("id") Long id){
+        service.delete(id);
         return ResponseEntity.ok().build();
     }
     

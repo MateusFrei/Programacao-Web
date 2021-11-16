@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragmentos :: imports-css(title='Administradores')}">
+        <title>title</title>
+    </head>
+    <body>
+        <div th:replace="~{fragmentos :: barramenu(pagina='administradores')}"/>
+
+        <div class="container" style="margin-top: 20px">
+            <div class="card-header">
+                <h4>Funcionários cadastrados
+                    <a class="btn btn-primary float-right" th:href="@{~/administradores/administrador}" role="button">Novo Funcionario</a>
+                </h4>
+            </div>
+            <div class="card" th:each="administrador : ${administradores}">
+                
+                <div class="card-body">
+                    <h5 class="card-title" th:text="'Nome: '+${administrador.nome}"></h5>
+                    <div class="card-text" th:text="'Email: '+${administrador.email}"></div>
+                    <div class="card-text" th:text="'Login: '+${administrador.login}"></div>
+                    <div class="card-text" th:text="'Clientes Cadastrados: '"></div>                  
+                    <span th:each="cli, i : ${administrador.usuarios}" th:text="${i.last} ? ${cli.nome} : ${cli.nome+' | '}" ></span>
+
+                    <div class="card-text">
+                        <a th:href="@{'~/administradores/administrador/'+${administrador.id}}" class="btn btn-warning">Editar</a>
+                        <a th:href="@{'~/administradores/'+${administrador.id}+'/deletar'}" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir esse funcionário?')">Excluir</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div th:replace="~{fragmentos :: imports-js}"/>
+    </body>
+</html>

@@ -54,7 +54,7 @@ public class AdminService {
         }
     }    
     
-    public Administrador findById(long id){
+    public Administrador findById(Long id){
         Optional<Administrador> result = repo.findByid(id);
         if (result.isEmpty()) {
             throw new NotFoundException("Fornecedor não encontrado.");
@@ -62,11 +62,22 @@ public class AdminService {
         return result.get();
     }
     
-    public void delete(int cpf){
-        Administrador obj = (Administrador) findByCpf(cpf);
-        
+    public void delete(Long id){
+        Administrador obj = (Administrador) findById(id);
+   
         verificaexlusao(obj);
-        repo.delete(obj);
+        try {
+            repo.delete(obj);
+        } catch (Exception e) {
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }            
+            throw new RuntimeException("erro ao salvar");
+        } 
     }
     
     public void verificaexlusao(Administrador a){

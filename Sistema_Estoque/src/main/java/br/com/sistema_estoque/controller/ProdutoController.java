@@ -30,7 +30,7 @@ public class ProdutoController {
     }
     
     @GetMapping(path = "/{id}")
-    public ResponseEntity getOne(@PathVariable("id") int id){
+    public ResponseEntity getOne(@PathVariable("id") Long id){
         return ResponseEntity.ok(service.findById(id));
     }
     

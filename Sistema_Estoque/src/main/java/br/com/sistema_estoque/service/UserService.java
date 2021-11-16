@@ -7,6 +7,7 @@ import br.com.sistema_estoque.model.Produto;
 import br.com.sistema_estoque.model.Usuario;
 import br.com.sistema_estoque.repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -26,20 +27,20 @@ public class UserService {
         return result;
     }
     
-    public List<Produto> findByid(Long id){
-        List<Produto> result = repo.findByid(id);
+    public Usuario findById(Long id){
+        Optional<Usuario> result = repo.findById(id);
         if (result.isEmpty()) {
             throw new NotFoundException("Produto não encontrado");
         }
-        return result;        
+        return result.get();
     }
     
     public void delete(Long id){
-        Usuario obj = (Usuario) findByid(id);
+        Usuario obj = findById(id);
         
         verificaexlusao(obj);
         try {
-            repo.delete(obj);
+           repo.delete(obj);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao deletar usuario.");
         }
@@ -62,7 +63,7 @@ public class UserService {
     }      
     
     public Usuario update(Usuario u, String senhaAtual, String novaSenha, String confirmaSenha){
-        Usuario obj = (Usuario) findByid(u.getId());
+        Usuario obj = (Usuario) findById(u.getId());
          alterarSenha(u, senhaAtual, novaSenha, confirmaSenha);
          try {
              u.setEmail(obj.getEmail());
