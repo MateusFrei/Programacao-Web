@@ -40,7 +40,7 @@ public class FornecedorService {
                     throw ((ConstraintViolationException)t);
                 }
             }            
-            throw new RuntimeException("erro ao salvar");
+            throw new RuntimeException("erro ao deletar");
         }       
     }
 

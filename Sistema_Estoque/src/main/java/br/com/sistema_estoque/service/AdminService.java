@@ -55,9 +55,9 @@ public class AdminService {
     }    
     
     public Administrador findById(Long id){
-        Optional<Administrador> result = repo.findByid(id);
+        Optional<Administrador> result = repo.findById(id);
         if (result.isEmpty()) {
-            throw new NotFoundException("Fornecedor não encontrado.");
+            throw new NotFoundException("Administrador não encontrado.");
         }
         return result.get();
     }
@@ -76,7 +76,7 @@ public class AdminService {
                     throw ((ConstraintViolationException)t);
                 }
             }            
-            throw new RuntimeException("erro ao salvar");
+            throw new RuntimeException("erro ao deletar");
         } 
     }
     

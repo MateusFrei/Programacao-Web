@@ -11,13 +11,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdministradorRepository extends JpaRepository<Administrador, String>{
+public interface AdministradorRepository extends JpaRepository<Administrador, Long>{
     @Query("SELECT p FROM Usuario p WHERE p.cpf = :cpf")
     public List<Usuario> findByCpf(@Param("cpf") int cpf);
-    
-    @Query("SELECT i FROM Administrador i WHERE i.id = :id")
-    public Optional<Administrador> findByid(@Param("id") Long id);
-
-
-    
+  
 }

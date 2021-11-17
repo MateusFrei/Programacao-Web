@@ -25,24 +25,32 @@ public class UserService {
         }
         return result;
     }
-    
+         
     public Usuario findById(Long id){
         Optional<Usuario> result = repo.findById(id);
         if (result.isEmpty()) {
-            throw new NotFoundException("Produto não encontrado");
+            throw new NotFoundException("Usuario não encontrado.");
         }
         return result.get();
     }
-    
+
     public void delete(Long id){
+
         Usuario obj = findById(id);
-        
+
         verificaexlusao(obj);
         try {
-          repo.delete(obj);
+            repo.delete(obj);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao deletar usuario.");
-        }
+            Throwable t = e;
+            while(t.getCause() !=null){
+                t = t.getCause();
+                if(t instanceof ConstraintViolationException){
+                    throw ((ConstraintViolationException)t);
+                }
+            }            
+            throw new RuntimeException("erro ao deletar");
+        }       
     }
     
     public void verificaexlusao(Usuario u){

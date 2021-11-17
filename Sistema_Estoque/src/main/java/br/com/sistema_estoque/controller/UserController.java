@@ -50,7 +50,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     
-    @PutMapping(path = "//{id}/alterarsenha")
+    @PutMapping(path = "/{id}/alterarsenha")
     public ResponseEntity alterarSenha(@PathVariable("id") Long id,
             @RequestParam(name = "senhaAtual", defaultValue = "", required = true)String senhaAtual,
             @RequestParam(name = "novaSenha", defaultValue = "", required = true)String novaSenha,

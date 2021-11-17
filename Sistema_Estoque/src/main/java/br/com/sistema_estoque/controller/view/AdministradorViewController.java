@@ -103,6 +103,6 @@ public String atualizacao(@PathVariable("id") Long id, Model model) {
     @GetMapping(path = "/{id}/deletar")
     public String deletar(@PathVariable("id") Long id){
         service.delete(id);
-        return "redirect:/administradors";
+        return "redirect:/administradores";
     }     
 }
