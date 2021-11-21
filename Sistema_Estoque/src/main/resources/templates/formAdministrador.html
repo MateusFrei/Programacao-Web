@@ -29,15 +29,6 @@
                     </div>
                 </div>
                 
-                <!---
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label for="usuario">Cliente:</label>
-                        <input th:field="*{usuario.nome}" type="text" class="form-control" id="nome" placeholder="Usuario" required="required" maxlength="150"/>
-                    </div>
-                </div>    
-                -->
-                
                 <div class="form-row">
                     <div class="form-group col">
                         <label for="login">Login:</label>
@@ -45,6 +36,14 @@
                     </div>
                 </div>                
                 
+                <!-- Não consigo criar o campo de cadastro de clinetes, pois aparece um erro que não soube resolver.
+                  <div class="form-row">
+                    <div class="form-group col">
+                        <label for="usuario.nome">Cadastro de Cliente:</label>
+                        <input th:field="*{usuario.nome}" type="text" class="form-control" id="usuario.nome" placeholder="Cliente" required="required" maxlength="150"/>
+                    </div>
+                </div>                
+               -->
                 <div class="form-row" th:if="${administrador.id==null}">
                     <div class="form-group col-md-6">
                         <label for="senha">Senha:</label>

@@ -1,6 +1,7 @@
 
 package br.com.sistema_estoque.controller.view;
 
+import br.com.sistema_estoque.model.Produto;
 import br.com.sistema_estoque.model.Usuario;
 import br.com.sistema_estoque.service.UserService;
 import java.util.ArrayList;
@@ -27,13 +28,14 @@ public class UsuarioViewController {
 
     @GetMapping
     public String getAll(Model model){
-        model.addAttribute("usuarios", service.findAl());
+        model.addAttribute("usuarios", service.findAll());
         return "usuarios";
     }
 
     @GetMapping(path = "/usuario")
     public String cadastro(Model model){
         model.addAttribute("usuario", new Usuario());
+        model.addAttribute("produto", new Produto());
         return "formUsuario";
     }       
 

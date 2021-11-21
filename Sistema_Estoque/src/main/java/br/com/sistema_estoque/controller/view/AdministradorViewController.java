@@ -3,6 +3,7 @@ package br.com.sistema_estoque.controller.view;
 
 import br.com.sistema_estoque.model.Administrador;
 import br.com.sistema_estoque.service.AdminService;
+import br.com.sistema_estoque.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdministradorViewController {
     @Autowired
     private AdminService service;
+    //private UserService clienteService;
     
     @GetMapping
     public String getAll(Model model){
@@ -34,6 +36,7 @@ public class AdministradorViewController {
     @GetMapping(path = "/administrador")
     public String cadastro(Model model){
         model.addAttribute("administrador", new Administrador());
+        // model.addAttribute("usuarios", clienteService.findAll());
         return "formAdministrador";
     }
     

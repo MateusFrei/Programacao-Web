@@ -27,8 +27,7 @@ public class ProdutoviewController {
     }
     @GetMapping(path = "/produto")
     public String cadastro(Model model){
-        model.addAttribute("produto", new Produto());
-        
+        model.addAttribute("produto", new Produto());       
         return "formProduto";
     }    
 

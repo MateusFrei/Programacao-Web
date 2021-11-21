@@ -27,7 +27,7 @@ public class Usuario extends Pessoa{
     @Length(max = 50, message = "senha pode ter no máximo 50 caracteres.")
     private String senha;
     
-    @Column(nullable = false, length = 14, unique = true, updatable = false)
+    @Column(nullable = false, length = 14, unique = true, updatable = true)
     @CPF(message = "CPF - invalido.")
     @NotBlank(message = "CPF- deve ser preenchido.")
     @Length(max = 15, message = "nome da epresa pode ter no máximo 15 caracteres.")

@@ -23,8 +23,7 @@
                     <div class="card-text" th:text="'Produtos Cadastrados: '"></div>                  
                     <span th:each="prod, i : ${fornecedor.produtos}" th:text="${i.last} ? ${prod.nomeProduto} : ${prod.nomeProduto+' | '}" ></span>              
 
-                    <div class="card-text">
-                        <a th:href="@{'~/fornecedores/fornecedor/'+${fornecedor.id}}" class="btn btn-warning">Editar</a>
+                    <div class="card-text">                      
                         <a th:href="@{'~/fornecedores/'+${fornecedor.id}+'/deletar'}" class="btn btn-danger" onclick="return confirm('Deseja realmente excluir esse funcionário?')">Excluir</a>
                     </div>
                 </div>

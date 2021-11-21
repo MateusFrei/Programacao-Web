@@ -65,7 +65,7 @@ public class UserService {
         return repo.findAll(p).toList();
     }
     
-    public List<Usuario> findAl(){
+    public List<Usuario> findAll(){
         return repo.findAll();
     }      
     

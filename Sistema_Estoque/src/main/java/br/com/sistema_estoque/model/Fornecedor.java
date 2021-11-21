@@ -24,7 +24,7 @@ public class Fornecedor extends Pessoa{
     @Length(max = 50, message = "nome da epresa pode ter no máximo 50 caracteres.")
     private String empresa;
     
-    @Column(nullable = false, length = 50, unique = true, updatable = false)
+    @Column(nullable = false, length = 50, unique = true, updatable = true)
     @CNPJ(message = "CNPJ - invalido.")
     private String cnpj;
     
