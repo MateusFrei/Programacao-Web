@@ -14,5 +14,8 @@ import org.springframework.stereotype.Repository;
 public interface AdministradorRepository extends JpaRepository<Administrador, Long>{
     @Query("SELECT p FROM Usuario p WHERE p.cpf = :cpf")
     public List<Usuario> findByCpf(@Param("cpf") int cpf);
+
+    public Administrador findByLogin(String login);
+
   
 }

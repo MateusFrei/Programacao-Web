@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -35,6 +37,10 @@ public class Administrador extends Pessoa implements Serializable{
     @Valid
     private List<Usuario> usuarios = new ArrayList<>();
     
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Size(min = 1, message = "precisa ter uma permissao ")
+    private List<Permissao> permissoes;   
+    
     public String getLogin() {
         return login;
     }
@@ -59,4 +65,12 @@ public class Administrador extends Pessoa implements Serializable{
         this.usuarios = usuarios;
     }
  
+    public List<Permissao> getPermissoes() {
+        return permissoes;
+    }
+
+    public void setPermissoes(List<Permissao> permissoes) {
+        this.permissoes = permissoes;
+    }
+    
 }

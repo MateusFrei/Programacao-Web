@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -35,9 +38,7 @@ public class Usuario extends Pessoa{
     
     @JsonIgnore
     @OneToMany (mappedBy = "usuario")
-    private List<Fornecedor> fornecedores = new ArrayList<>();
-    
-    
+    private List<Fornecedor> fornecedores = new ArrayList<>(); 
     @ManyToOne
     private Administrador administrador;
     
@@ -92,5 +93,6 @@ public class Usuario extends Pessoa{
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
-
+    
+    
 }

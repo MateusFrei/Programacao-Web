@@ -11,6 +11,7 @@ import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,6 +42,7 @@ public class AdminService {
     
     public Administrador save(Administrador a){
         try {
+            a.setSenha(new BCryptPasswordEncoder().encode(a.getSenha()));
             return repo.save(a);
         } catch (Exception e) {
             Throwable t = e;
@@ -119,7 +121,7 @@ public class AdminService {
             throw new RuntimeException("Nova sneha e confimação nao conferem");
         }
         
-        a.setSenha(novaSenha);
+        a.setSenha(new BCryptPasswordEncoder().encode(novaSenha));
     }
     
     public List<Administrador> findAll(int page, int size){
