@@ -3,6 +3,7 @@ package br.com.sistema_estoque.service;
 
 import br.com.sistema_estoque.exception.NotFoundException;
 import br.com.sistema_estoque.model.Administrador;
+import br.com.sistema_estoque.model.Permissao;
 import br.com.sistema_estoque.model.Usuario;
 import br.com.sistema_estoque.repository.AdministradorRepository;
 import java.util.List;
@@ -41,6 +42,8 @@ public class AdminService {
     }
     
     public Administrador save(Administrador a){
+        
+         removePermissoesNulas(a);       
         try {
             a.setSenha(new BCryptPasswordEncoder().encode(a.getSenha()));
             return repo.save(a);
@@ -92,6 +95,7 @@ public class AdminService {
      public Administrador update(Administrador a, String senhaAtual, String novaSenha, String confirmaSenha){
         Administrador obj = findById(a.getId());
         alterarSenha(a, senhaAtual, novaSenha, confirmaSenha);
+         removePermissoesNulas(a);       
         try {
             a.setEmail(obj.getEmail());
             a.setNome(obj.getNome());
@@ -132,6 +136,13 @@ public class AdminService {
     public List<Administrador> findAl(){
         return repo.findAll();
     }
-
+     public void removePermissoesNulas(Administrador f){
+        f.getPermissoes().removeIf( (Permissao p) -> {
+            return p.getId()==null;
+        });
+        if(f.getPermissoes().isEmpty()){
+            throw new RuntimeException("ADM deve conter no mínimo 1 permissão.");
+        }
+    }   
  
 }

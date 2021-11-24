@@ -2,10 +2,12 @@ package br.com.sistema_estoque;
 
 import br.com.sistema_estoque.model.Administrador;
 import br.com.sistema_estoque.model.Fornecedor;
+import br.com.sistema_estoque.model.Permissao;
 import br.com.sistema_estoque.model.Produto;
 import br.com.sistema_estoque.model.Usuario;
 import br.com.sistema_estoque.repository.AdministradorRepository;
 import br.com.sistema_estoque.repository.FornecedorRepository;
+import br.com.sistema_estoque.repository.PermissaoRepository;
 import br.com.sistema_estoque.repository.ProdutoRepository;
 import br.com.sistema_estoque.repository.UserRepository;
 import java.util.List;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class SistemaEstoqueApplication implements CommandLineRunner{
@@ -29,12 +32,22 @@ public class SistemaEstoqueApplication implements CommandLineRunner{
     @Autowired
     private ProdutoRepository prodrep;
     
+    @Autowired
+    private PermissaoRepository permissaoRepo;    
+    
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaEstoqueApplication.class, args);
 	}
 
     @Override
     public void run(String... args) throws Exception {
+        //Permissão
+        Permissao p1 = new Permissao();
+        p1.setNome("ADMIN");
+        Permissao p2 = new Permissao();
+        p2.setNome("FUNC");
+        permissaoRepo.saveAll(List.of(p1, p2));
+        
         Fornecedor f1 = new Fornecedor();
         Fornecedor f2 = new Fornecedor();
         
@@ -72,7 +85,8 @@ public class SistemaEstoqueApplication implements CommandLineRunner{
 
         //administradores
         adm.setLogin("Amabit");
-        adm.setSenha("bit123");
+        adm.setPermissoes(List.of(p1));
+        adm.setSenha(new BCryptPasswordEncoder().encode("12345678"));
         adm.setNome("amarildo bit");
         adm.setEmail("amabit@gmail.com");        
         adm.setUsuarios(List.of(u1,u2));

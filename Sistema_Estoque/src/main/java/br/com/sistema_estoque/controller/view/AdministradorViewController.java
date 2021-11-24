@@ -2,6 +2,7 @@
 package br.com.sistema_estoque.controller.view;
 
 import br.com.sistema_estoque.model.Administrador;
+import br.com.sistema_estoque.repository.PermissaoRepository;
 import br.com.sistema_estoque.service.AdminService;
 import br.com.sistema_estoque.service.UserService;
 import java.util.ArrayList;
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(path = "/administradores")
-public class AdministradorViewController {
+public class AdministradorViewController {   
+    @Autowired
+    private PermissaoRepository permissaoRepo;
     @Autowired
     private AdminService service;
     //private UserService clienteService;
@@ -36,6 +39,7 @@ public class AdministradorViewController {
     @GetMapping(path = "/administrador")
     public String cadastro(Model model){
         model.addAttribute("administrador", new Administrador());
+        model.addAttribute("permissoes", permissaoRepo.findAll());
         // model.addAttribute("usuarios", clienteService.findAll());
         return "formAdministrador";
     }
@@ -45,7 +49,8 @@ public class AdministradorViewController {
             BindingResult result,
             @RequestParam("confirmarSenha") String confirmarSenha,
             Model model) {
-
+        //Valores a serem retornados
+        model.addAttribute("permissoes", permissaoRepo.findAll());
         if (result.hasErrors()) {
             model.addAttribute("msgErros", result.getAllErrors());
             return "formAdministrador";
@@ -79,7 +84,8 @@ public String atualizacao(@PathVariable("id") Long id, Model model) {
             BindingResult result,
             @PathVariable("id") Long id,
             Model model) {
-
+        //Valores a serem retornados
+        model.addAttribute("permissoes", permissaoRepo.findAll());
         List<FieldError> list = new ArrayList<>();
         for(FieldError fe : result.getFieldErrors()){
             if(!fe.getField().equals("senha")){

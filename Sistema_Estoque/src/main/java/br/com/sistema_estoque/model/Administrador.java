@@ -39,7 +39,7 @@ public class Administrador extends Pessoa implements Serializable{
     
     @ManyToMany(fetch = FetchType.EAGER)
     @Size(min = 1, message = "precisa ter uma permissao ")
-    private List<Permissao> permissoes;   
+    private List<Permissao> permissoes = new ArrayList<>();   
     
     public String getLogin() {
         return login;
